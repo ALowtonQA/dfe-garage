@@ -1,7 +1,6 @@
 package com.qa.garage;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.qa.vehicles.Vehicle;
 
@@ -34,21 +33,13 @@ public class Garage {
 	}
 	
 	public void removeVehicleById(int id) {
-		boolean found = false;
-		Iterator<Vehicle> itr = this.vehicles.iterator();
-		while (itr.hasNext()) {
-			Vehicle vehicle = itr.next();
+		Vehicle found = null;
+		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getId() == id) {
-				itr.remove();
-				found = true;
+				found = vehicle;
 			}
 		}
-		
-		if (found) {
-			System.out.println("\n\nVehicle removed.");
-		} else {
-			System.out.println("\n\nVehicle not found.");
-		}
+		removeVehicle(found);
 	}
 	
 	public void emptyGarage() {
